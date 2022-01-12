@@ -29,9 +29,16 @@
     "gatsby-source-filesystem": "^4.4.0",
     "gatsby-transformer-sharp": "^4.4.0",
     "react": "^17.0.1",
+    "react-audio-player": "^0.17.0",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-player": "^2.9.0",
     "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.2",
+    "gatsby-plugin-postcss": "^5.5.0",
+    "postcss": "^8.4.5",
+    "tailwindcss": "^3.0.13"
   }
 }
