@@ -1,5 +1,5 @@
 import * as React from "react"
-import {graphql} from "gatsby"
+import {graphql, Link} from "gatsby"
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import ReactPlayer from 'react-player';
 import ReactAudioPlayer from 'react-audio-player';
@@ -29,12 +29,17 @@ const IndexPage = ({data}) => {
         </div>
         )}
 
+          {data.allContentfulPodcast.edges.map(slug =>
+          <h3 className="text-3xl  bg-red-600 text-white p-10">
+            <Link to={`/EpisodeDetails/${slug.node.slug}`}>{slug.node.title}</Link>
+          </h3>
+          )}
           {data.allContentfulPodcast.edges.map(audio => 
           <div>
  
 <ReactAudioPlayer
   src={'https:' + audio.node.audioClip.file.url}
-  autoPlay
+  
   controls
 />
             
@@ -68,23 +73,25 @@ const IndexPage = ({data}) => {
 }
 
 export const query = graphql `
-query MyQuery {
-  allContentfulPodcast {
+query  {
+  allContentfulPodcast(sort: {fields: publishedDate, order: DESC}) {
     edges {
       node {
         title
+        slug
+        publishedDate(formatString: "DD MM YYYY")
         thumbnail {
+          file {
+            url
+          }
+        }
+        video {
           file {
             url
           }
         }
         content {
           raw
-        }
-        video {
-          file {
-            url
-          }
         }
         audioClip {
           file {
@@ -95,6 +102,7 @@ query MyQuery {
     }
   }
 }
+
 
 
 `
