@@ -7,12 +7,17 @@ import { graphql, Link, useStaticQuery } from "gatsby"
   const data = useStaticQuery 
   (
   graphql `
-  query  {
+  query{
   allContentfulPodcast(sort: {fields: publishedDate, order: DESC}) {
     edges {
       node {
         title
         slug
+        thumbnail {
+          file {
+            url
+          }
+        }
       }
     }
   }
@@ -23,10 +28,17 @@ import { graphql, Link, useStaticQuery } from "gatsby"
     return (
         <div>
      {data.allContentfulPodcast.edges.map(edge => 
+     
      <h2>
                 <Link to={`/EpisodeDetails/${edge.node.slug}/`}>{edge.node.title}</Link>
               </h2>
               )}
+              {data.allContentfulPodcast.edges.map(thumbnail => 
+        <div className="w-100 h-50">
+        <img key={thumbnail} src={thumbnail.node.thumbnail.file.url} alt="something" width={600} height={600}/>
+        </div>
+        )}
+
         </div>
     )
 }

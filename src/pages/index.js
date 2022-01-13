@@ -28,46 +28,13 @@ const IndexPage = ({data}) => {
         <img key={thumbnail} src={thumbnail.node.thumbnail.file.url} alt="something" width={600} height={600}/>
         </div>
         )}
-
-          {data.allContentfulPodcast.edges.map(slug =>
-          <h3 className="text-3xl  bg-red-600 text-white p-10">
-            <Link to={`/EpisodeDetails/${slug.node.slug}`}>{slug.node.title}</Link>
-          </h3>
-          )}
-          {data.allContentfulPodcast.edges.map(audio => 
-          <div>
- 
-<ReactAudioPlayer
-  src={'https:' + audio.node.audioClip.file.url}
-  
-  controls
-/>
-            
-          </div>
-
-          )}
-        {data.allContentfulPodcast.edges.map(content => 
-          <div>{documentToReactComponents(JSON.parse(content.node.content.raw))}</div>
-          )}
-
-          {data.allContentfulPodcast.edges.map(video => 
-          <div>
-  <ReactPlayer 
-   priority
-  playIcon={true}
-   
-   
-   className='react-player'
-    url={'https:' + video.node.video.file.url}    
-    playing={isPlaying}
-    height = '50%'
-    width = '50%'
+        {data.allContentfulPodcast.edges.map(edge => 
      
-  />
-
-          </div>
-          )}
-
+              <a className="w-30 flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+                <Link to={`/EpisodeDetails/${edge.node.slug}/`}>{edge.node.title}</Link>
+              </a>
+              )}
+          
     </div>
       )
 }
