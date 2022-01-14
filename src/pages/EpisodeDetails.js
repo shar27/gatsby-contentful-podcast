@@ -7,7 +7,7 @@ import Nav from '../components/Nav'
   const data = useStaticQuery 
   (
   graphql `
-  query{
+  query {
   allContentfulPodcast(sort: {fields: publishedDate, order: DESC}) {
     edges {
       node {
@@ -18,13 +18,15 @@ import Nav from '../components/Nav'
             url
           }
         }
+        childrenContentfulPodcastExcerptTextNode {
+          excerpt
+        }
       }
     }
   }
 }
-
   `)
-  
+  console.log(data);
     return (
         <div>
         <Nav/>
@@ -33,9 +35,12 @@ import Nav from '../components/Nav'
           {data.allContentfulPodcast.edges.map(edge => 
      
               <div className="container mx-auto p-5">
-                <h1 className="text-3xl"><Link to={`/EpisodeDetails/${edge.node.slug}/`}>{edge.node.title}</Link></h1>
+                <h1 className="text-3xl  text-black p-5 font-bold"><Link to={`/EpisodeDetails/${edge.node.slug}/`}>{edge.node.title}</Link></h1>
               
               <img src={edge.node.thumbnail.file.url} alt="something" width={300} height={300}/>
+              
+              <h1 className="box-decoration-slice bg-gradient-to-r from-indigo-600 to-pink-500 text-white px-4 p-5"><Link to={`/EpisodeDetails/${edge.node.slug}/`}>{edge.node.title}</Link></h1>
+              <p>{edge.node.childrenContentfulPodcastExcerptTextNode[0].excerpt}</p>
             </div>
               )}
               </div>
