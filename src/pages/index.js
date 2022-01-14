@@ -3,8 +3,9 @@ import {graphql, Link} from "gatsby"
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import ReactPlayer from 'react-player';
 import ReactAudioPlayer from 'react-audio-player';
-
+import Hero from '../components/Hero'
 import {useState} from "react"
+
 
 // markup
 const IndexPage = ({data}) => {
@@ -14,27 +15,23 @@ const IndexPage = ({data}) => {
   return (
     <div>
 
-    <h1 className="text-blue-600 text-7xl text-center">Shotify</h1>
+    
+          
+          <Hero/>
+          
+          <h1 className="text-6xl text-center ">Latest shows</h1>
+          <div className="grid grid-cols-4 gap-2">
           {data.allContentfulPodcast.edges.map(edge => 
           <div>
-          <h1 key={edge} className=" text-center text-5xl text-blue-600" >{edge.node.title} </h1>
-          
-          </div>
-          )}
-          
-        
-        {data.allContentfulPodcast.edges.map(thumbnail => 
-        <div className="w-100 h-50">
-        <img key={thumbnail} src={thumbnail.node.thumbnail.file.url} alt="something" width={600} height={600}/>
-        </div>
-        )}
-        {data.allContentfulPodcast.edges.map(edge => 
-     
-              <a className="w-30 flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+          <h1 key={edge} className=" text-2xl text-blue-600" >{edge.node.title} </h1>
+          <img  src={edge.node.thumbnail.file.url} alt="something" width={300} height={300}/>
+          <a className="px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
                 <Link to={`/EpisodeDetails/${edge.node.slug}/`}>{edge.node.title}</Link>
               </a>
-              )}
-          
+          </div>
+          )}
+         
+              </div>
     </div>
       )
 }

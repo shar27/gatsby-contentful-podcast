@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql, Link, useStaticQuery } from "gatsby"
-
+import Nav from '../components/Nav'
 
 
  function EpisodeDetails ({props}) {
@@ -27,18 +27,19 @@ import { graphql, Link, useStaticQuery } from "gatsby"
   
     return (
         <div>
-     {data.allContentfulPodcast.edges.map(edge => 
-     
-     <h2>
-                <Link to={`/EpisodeDetails/${edge.node.slug}/`}>{edge.node.title}</Link>
-              </h2>
-              )}
-              {data.allContentfulPodcast.edges.map(thumbnail => 
-        <div className="w-100 h-50">
-        <img key={thumbnail} src={thumbnail.node.thumbnail.file.url} alt="something" width={600} height={600}/>
-        </div>
-        )}
+        <Nav/>
 
+        <div className="grid grid-cols-4 gap-4">
+          {data.allContentfulPodcast.edges.map(edge => 
+     
+              <div className="container mx-auto p-5">
+                <h1 className="text-3xl"><Link to={`/EpisodeDetails/${edge.node.slug}/`}>{edge.node.title}</Link></h1>
+              
+              <img src={edge.node.thumbnail.file.url} alt="something" width={300} height={300}/>
+            </div>
+              )}
+              </div>
+              
         </div>
     )
 }
