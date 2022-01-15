@@ -13,7 +13,7 @@ const IndexPage = ({data}) => {
   console.log(data);
   
   return (
-    <div>
+    <div className="overflow-x-hidden w-full">
 
     
           
@@ -21,6 +21,8 @@ const IndexPage = ({data}) => {
           
           <h1 className="text-6xl text-center ">Latest shows</h1>
           <div className="grid grid-cols-4 gap-2">
+
+       
           {data.allContentfulPodcast.edges.map(edge => 
           <div>
           <h1 key={edge} className=" text-2xl text-blue-600" >{edge.node.title} </h1>

@@ -6,10 +6,10 @@ import {Link} from 'gatsby'
 
 function Hero() {
     return (
-        <div className='bg-cover opacity-75 text-center relative'>
+        <div className='bg-cover overflow-x-hidden sm:w-full opacity-75 text-center relative '>
 
             <img 
-            
+            className='w-full sm:w-full md:h-full lg:h-full'
             src={hero}
                 
 
@@ -20,15 +20,15 @@ function Hero() {
 
             
             </div>
-            <div className='flex justify-evenly'>
-            <div className='top-10 absolute '>
+            <div className='flex justify-evenly w-full'>
+            <div className='top-7 absolute '>
             <Link to={"/EpisodeDetails"}>
-                <a className='text-4xl text-blue-500 ml-10'>Podcast</a>
+                <a className='text-2xl font-bold text-blue-500 ml-3 '>Podcast</a>
 </Link>
-                <a className='text-4xl text-blue-500 ml-10 '>Home</a>
-                <a className='text-4xl text-blue-500 ml-10 '>Home</a>
-                <a className='text-4xl text-blue-500 ml-10 ' >Home</a>
-                <a className='text-4xl text-blue-500 ml-10  '>Home</a>
+                <a className='text-2xl font-bold text-blue-500 ml-2 '>Home</a>
+                <a className='text-2xl font-bold text-blue-500 ml-2 '>Home</a>
+                <a className='text-2xl font-bold text-blue-500 ml-2 ' >Home</a>
+                <a className='text-2xl font-bold text-blue-500 ml-2 mr-4  '>Home</a>
             </div>
             </div>
             <div className='flex justify-center'>
